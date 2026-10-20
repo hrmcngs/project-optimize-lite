@@ -6,7 +6,7 @@ An agent skill for cleaning up a project and reducing program size, memory use, 
 
 When a user shares this repository URL to use Project Optimize Lite without specifying a task, introduce it briefly and ask in the user's language:
 
-> Would you like me to audit your project for unnecessary files, performance bottlenecks, security risks, and crashes caused by unexpected operations? Which project folder or repository should I review?
+> Would you like me to audit your project for unnecessary files, performance bottlenecks, security risks, unexpected-operation crashes, and compatibility with related software? Which project folder or repository should I review?
 
 If the target is already clear, ask only whether to start. Wait for the answer before beginning a review or modifying files. Start with a read-only review; review approval alone does not authorize cleanup, code changes, installation, or execution of target code. Ask whether to apply fixes after presenting concrete findings unless the user has already authorized fixes.
 
@@ -21,6 +21,18 @@ Ask your agent to read `skills/project-optimize-lite/SKILL.md`, then specify the
 > Use project-optimize-lite to streamline /path/to/project. Remove demonstrably unused files and dependencies, investigate lag, implement small improvements, and verify functionality, security, and before/after results.
 
 > Measure why this application's screen transitions are slow and fix the bottleneck without weakening security.
+
+### Expected behavior and compatibility prompt
+
+> Use project-optimize-lite to review /path/to/project against its intended behavior, documented contracts, and supported environments. Identify the platform and exact versions, inspect relevant companion software and integration points, and investigate normal, unexpected, failure, persistence, and recovery flows. Compare standalone operation with supported combinations using a bounded test matrix. Consult official version-specific documentation when needed. Report expected versus observed behavior, evidence, and untested combinations. If fixes are authorized, implement small corrections and regression tests without reducing security or removing supported behavior.
+
+This workflow supports websites, desktop/mobile applications, services, libraries, plugins, and Minecraft mods. It selects platform-specific checks rather than applying every checklist to every project.
+
+For a Minecraft mod, for example:
+
+> Review this mod for its declared Minecraft, Java, and loader versions. Check client and dedicated-server loading, multiplayer behavior, lifecycle transitions, persistence, optional dependencies, and conflicts with the companion mods declared or supplied for this project. Use disposable worlds and local isolated test instances. Distinguish successful compilation from tested runtime compatibility, and report unavailable or untested combinations.
+
+Compatibility claims are limited to the inspected versions and tested combinations. Private or unavailable companion software and uncertain requirements remain explicit gaps, not assumed successes.
 
 ### Unexpected-operation debugging prompt
 
